@@ -1,0 +1,1 @@
+http://ka-static.herokuapp.com/
