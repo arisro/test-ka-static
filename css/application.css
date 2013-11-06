@@ -1,0 +1,10 @@
+#loginContainer {
+	display: none;
+}
+#userContainer {
+	display: none;
+}
+
+#userContainer p {
+	color: #fff;
+}
