@@ -17,8 +17,7 @@ Ka.Api.request = function(module, path, callback, method, payload) {
 		cache: false,
 		crossDomain: true,
 		dataType: 'json',
-		headers: {},
-		timeout: 60000
+		headers: {}
 	};
 	if (Ka.Cache.get('access_token')) {
 		req.headers['Authorization'] = 'Token token="'+Ka.Cache.get('access_token')+'"';
