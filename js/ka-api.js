@@ -11,7 +11,7 @@ Ka.Api.request = function(module, path, callback, method, payload) {
 	var method = method || 'GET';
 	var payload = payload || {};
 
-	var url = this.modulesEndpoints[module] + path;
+	var url = this.modulesEndpoints[module].url + path;
 	var req = {
 		data: payload,
 		cache: false,
@@ -21,6 +21,9 @@ Ka.Api.request = function(module, path, callback, method, payload) {
 	};
 	if (Ka.Cache.get('access_token')) {
 		req.headers['Authorization'] = 'Token token="'+Ka.Cache.get('access_token')+'"';
+	}
+	if (this.modulesEndpoints[module].hasOwnProperty('version')) {
+		req.headers['Accept'] = 'application/com.ka.v'+this.modulesEndpoints[module].version+'+json'
 	}
 	if (method != 'GET') {
 		req.type = 'POST';

@@ -1,4 +1,4 @@
-Ka.Api.modulesEndpoints.users = "http://ka-api.herokuapp.com/modusers";
+Ka.Api.modulesEndpoints.users = "http://api.ka.local:8080/modusers";
 Ka.Api.modules.users = {};
 
 // callback(Object user, status)
