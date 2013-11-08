@@ -1,4 +1,4 @@
-Ka.Api.modulesEndpoints.users = "http://api.ka.local:8080/modusers";
+Ka.Api.modulesEndpoints.users = {url: "http://api.ka.local:8080/modusers", version: 1};
 Ka.Api.modules.users = {};
 
 // callback(Object user, status)
@@ -21,14 +21,14 @@ Ka.Api.modules.users.logout = function(redirect_uri, callback) {
 	var redirect_uri = redirect_uri || '/';
 	callback = callback || function() {}
 
-	Ka.Api.request('users', '/sessions/'+Ka.Cache.get('access_token'), function(data, statusCode) {
-		if (statusCode == 204) {
+	Ka.Api.request('users', '/logout', function(data, statusCode) {
+		if (statusCode == 200) {
 			Ka.Cache.delete('access_token');
 			window.location = redirect_uri;
 		} else {
 			alert("Logout failed!");
 		}
-	}, 'DELETE');
+	}, 'GET');
 
 };
 
@@ -43,7 +43,7 @@ Ka.Api.modules.users.handleFacebookCallback = function() {
 		}
 
 		if (params.hasOwnProperty('access_token')) {
-			Ka.Api.request('users', '/sessions', function(data, statusCode) {
+			Ka.Api.request('users', '/login', function(data, statusCode) {
 				if (statusCode == 200) {
 					Ka.Cache.set('access_token', data.token.token);
 					window.location = '/';
